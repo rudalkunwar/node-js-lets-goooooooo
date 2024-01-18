@@ -3,12 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About</title>
+    <title>Home</title>
     <style>
       * {
         margin: 0px;
         padding: 0px;
-        background-color: lightslategray;
+      }
+      body {
+        background-color: lightskyblue;
       }
       .container {
         height: 100vh;
@@ -21,13 +23,15 @@
         height: 40px;
         padding: 20px;
         list-style: none;
+        background-color: rgb(63, 93, 122);
       }
       li {
         padding-left: 10px;
       }
       a {
-        color: white;
+        color: rgb(255, 251, 0);
         text-decoration: none;
+        font-size: larger;
       }
     </style>
   </head>
@@ -36,10 +40,12 @@
       <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/about">About</a></li>
+        <li><a href="/blogs">Blogs</a></li>
+        <li><a href="/blogs/add">Add Blogs</a></li>
       </ul>
     </nav>
     <div class="container">
-      <h1>This is about page</h1>
+      <h1>This is the home page</h1>
     </div>
   </body>
 </html>

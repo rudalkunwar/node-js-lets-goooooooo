@@ -1,21 +1,34 @@
-//import module
-const express = require("express");
+//import the express
+const express = require('express');
 
-//let initilize our app
+//create the instance of our app
 const app = express();
 
-//lets listen our app
+//lets set oour view engine
+
+app.set('view engine','ejs');
+
+//listen which means activate the server in port 3000 
 app.listen(3000);
 
-app.get("/", (req, res) => {
-  res.sendFile("./views/index.html", { root: __dirname });
+//now lets make our routes
+
+app.get('/',(req,res) =>{
+  res.render('index');
 });
-app.get("/about", (req, res) => {
-  res.sendFile("./views/about.html", { root: __dirname });
+
+app.get('/about',(req,res) =>{
+  res.render('about');
 });
-app.get("/home", (req, res) => {
-  res.redirect("/");
-});
-app.use((req, res) => {
-  res.status(404).sendFile("./views/404.html", { root: __dirname });
-});
+
+app.get('/blogs',(req,res)=>{
+  res.render('blogs');
+})
+
+app.get('/blogs/add',(req,res)=>{
+  res.render('addblog');
+})
+
+app.use((req,res)=>{
+  res.status(404).render('404');
+})
