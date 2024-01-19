@@ -73,10 +73,10 @@
   <%- include('./partials/nav.ejs')%>
   <h1>Add New Blog</h1>
   <div class="container">
-    <form action="">
-      <input type="text" placeholder="Title">
-      <input type="text" placeholder="Snippets">
-      <textarea name="" id="" cols="30" rows="10" placeholder="Body"></textarea>
+    <form action="/blogs" method="post">
+      <input type="text" id="title" name="title" placeholder="Title">
+      <input type="text" id="snippet" name="snippet" placeholder="Snippets">
+      <textarea name="body" id="body" cols="30" rows="10" placeholder="Body" required></textarea>
       <button type="submit">Add Blog</button>
     </form>
 

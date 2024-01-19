@@ -15,12 +15,16 @@ mongoose
     app.listen(3000);
   })
   .then((error) => {
-    console.log(error);
+    // console.log(error);
   });
 //lets set oour view engine
 
 app.set("view engine", "ejs");
 //listen which means activate the server in port 3000
+
+
+//convert url data to readable
+app.use(express.urlencoded({extended:true}));
 
 //now lets make our routes
 app.get("/", (req, res) => {
@@ -35,8 +39,21 @@ app.get("/blogs", (req, res) => {
   Blog.find().then((result)=>{
     res.render('blogs',{blogs:result});
   }).then((error)=>{
-    console.log(error);
+    if(error){
+      console.log(error);
+    }
   })
+});
+
+app.post('/blogs',(req,res)=>{
+ const blog=new Blog(req.body);
+ blog.save().then((result)=>{
+  res.redirect('/blogs');
+ }).catch((err)=>{
+  if(err){
+    console.log(err);
+  }
+ });
 });
 
 app.get("/blogs/add", (req, res) => {
