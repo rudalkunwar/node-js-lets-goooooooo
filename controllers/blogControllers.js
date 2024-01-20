@@ -44,7 +44,7 @@ const blog_edit = (req, res) => {
       res.render("blogs/edit", { blog: data });
     })
     .catch((err) => {
-      console.log(err);
+      res.status(404).render("404");
     });
 };
 const blog_update = (req, res) => {
@@ -65,7 +65,7 @@ const blog_delete = (req, res) => {
       res.json({ redirect: "/blog" });
     })
     .catch((err) => {
-      console.log(err);
+      res.status(404).render("404");
     });
 };
 
