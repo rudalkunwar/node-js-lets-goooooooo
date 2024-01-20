@@ -17,7 +17,6 @@
       }
       h1 {
         color: #3f5d7a;
-        text-align: center;
         margin: 20px 0;
       }
       .container {
@@ -32,18 +31,21 @@
         color: #3f5d7a;
         margin-bottom: 10px;
       }
+      .snip{
+        color: blue;
+      }
     </style>
   </head>
   <body>
     <%- include('./partials/nav.ejs')%>
 
-    <h1>Rudal's Learning Node.js</h1>
+    <h1 style="text-align: center;">Rudal's Learning Node.js</h1>
     <div class="container">
       <h3>All Blogs</h3>
       <div>
-        <% if(blogs.length>0){%> <% blogs.forEach(blog=>{%>
-        <h1>Title:<%= blog.title%></h1>
-        <p><%= blog.snippet%></p>
+        <% if(blogs.length>0){%> <% blogs.forEach(blog=>{ %>
+        <h1><%= blog.title%></h1>
+        <p class="snip"><%= blog.snippet%></p>
         <p><%= blog.body%></p>
         <%})%> <%}else{%>
         <h3>There are no blogs</h3>

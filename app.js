@@ -18,7 +18,6 @@ mongoose
     // console.log(error);
   });
 //lets set oour view engine
-
 app.set("view engine", "ejs");
 //listen which means activate the server in port 3000
 
@@ -36,14 +35,14 @@ app.get("/about", (req, res) => {
 });
 
 app.get("/blogs", (req, res) => {
-  Blog.find().then((result)=>{
-    res.render('blogs',{blogs:result});
-  }).then((error)=>{
-    if(error){
-      console.log(error);
-    }
-  })
+  Blog.find().sort({createdAt: -1}).then((result) => {
+    res.render('blogs', { blogs: result });
+  }).catch((error) => {
+    console.log(error);
+    res.status(500).send('Internal Server Error');
+  });
 });
+
 
 app.post('/blogs',(req,res)=>{
  const blog=new Blog(req.body);
