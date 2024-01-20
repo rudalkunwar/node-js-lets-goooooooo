@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+    }
+    h1 {
+      color: #3f5d7a;
+      text-align: center;
+      margin: 20px 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    h3 {
+      color: #3f5d7a;
+      margin-bottom: 10px;
+    }
+    form {
+      width: 100%;
+      padding: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+    input,
+    textarea,
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+    }
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #3f5d7a;
+    }
+    textarea {
+      resize: vertical;
+    }
+    button {
+      background-color: #3f5d7a;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #2e465f;
+    }
+  </style>
+</head>
+<body>
+  <%- include('../partials/nav.ejs')%>
+  <h1>Add New Blog</h1>
+  <div class="container">
+    <form action="/blog/add" method="post">
+      <input type="text" id="title" name="title" placeholder="Title">
+      <input type="text" id="snippet" name="snippet" placeholder="Snippets">
+      <textarea name="body" id="body" cols="30" rows="10" placeholder="Body" required></textarea>
+      <button type="submit">Add Blog</button>
+    </form>
+
+  </div>
+  <%- include('../partials/foot.ejs')%>
+
+</body>
+</html>

@@ -31,27 +31,49 @@
         color: #3f5d7a;
         margin-bottom: 10px;
       }
-      .snip{
+      .snip {
         color: blue;
+      }
+      button {
+        background-color: rgb(89, 89, 212);
+        padding: 10px;
+        color: white;
+        border: none;
+        outline: none;
+      }
+      button:hover {
+        cursor: pointer;
       }
     </style>
   </head>
   <body>
-    <%- include('./partials/nav.ejs')%>
+    <%- include('../partials/nav.ejs')%>
 
-    <h1 style="text-align: center;">Rudal's Learning Node.js</h1>
+    <h1 style="text-align: center">Rudal's Learning Node.js</h1>
     <div class="container">
-      <h3>All Blogs</h3>
       <div>
-        <% if(blogs.length>0){%> <% blogs.forEach(blog=>{ %>
         <h1><%= blog.title%></h1>
         <p class="snip"><%= blog.snippet%></p>
         <p><%= blog.body%></p>
-        <%})%> <%}else{%>
-        <h3>There are no blogs</h3>
-        <%}%>
       </div>
+      <input type="hidden" id="ID" value="<%= blog._id%>" />
+      <button onclick="deleteBlog();" style="background-color: red">
+        Delete
+      </button>
+      <a href="edit/<%= blog._id%>"><button>Edit</button></a>
     </div>
-    <%- include('./partials/foot.ejs')%>
+    <%- include('../partials/foot.ejs')%>
+    <script>
+      function deleteBlog() {
+        const id = document.getElementById("ID").value;
+        const endpoint = "delete/" + id;
+        fetch(endpoint, {
+          method: "DELETE",
+        })
+          .then((response) => response.json())
+          .then((data) =>  window.location.href=data.redirect)
+          .catch((error) => console.log(error));
+      }
+    </script>
   </body>
 </html>

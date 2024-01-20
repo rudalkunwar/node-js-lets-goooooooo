@@ -1,7 +1,7 @@
 //import the express
 const express = require("express");
 const mongoose = require("mongoose");
-const Blog = require("./models/blog");
+const blogRoutes = require("./routes/blogRoutes");
 
 //create the instance of our app
 const app = express();
@@ -19,44 +19,20 @@ mongoose
   });
 //lets set oour view engine
 app.set("view engine", "ejs");
-//listen which means activate the server in port 3000
 
 
 //convert url data to readable
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 
 //now lets make our routes
+app.use('/blog',blogRoutes);
+
 app.get("/", (req, res) => {
   res.render("index");
 });
 
 app.get("/about", (req, res) => {
   res.render("about");
-});
-
-app.get("/blogs", (req, res) => {
-  Blog.find().sort({createdAt: -1}).then((result) => {
-    res.render('blogs', { blogs: result });
-  }).catch((error) => {
-    console.log(error);
-    res.status(500).send('Internal Server Error');
-  });
-});
-
-
-app.post('/blogs',(req,res)=>{
- const blog=new Blog(req.body);
- blog.save().then((result)=>{
-  res.redirect('/blogs');
- }).catch((err)=>{
-  if(err){
-    console.log(err);
-  }
- });
-});
-
-app.get("/blogs/add", (req, res) => {
-  res.render("addblog");
 });
 
 app.use((req, res) => {
